@@ -43,14 +43,14 @@ while [[ "$#" -gt 0 ]]; do
 done
 
 # Valida os parâmetros obrigatórios
-if [ -z "$projectName" ] || [ -z "$gitUrl" ]; then
+if [ -z "$projectName" ] || [ -z "$gitUrl" ] ||  [ -z "$domain" ]; then
     echo "Os parâmetros -p (projectName) e -g (gitUrl) são obrigatórios."
     usage
 fi
 
 # Valida parâmetros de SSL
 if [ "$ssl" == "true" ]; then
-    if [ -z "$domain" ] || [ -z "$email" ]; then
+    if [ -z "$email" ]; then
         echo "Os parâmetros -d (domain) e -e (email) são obrigatórios quando SSL está habilitado."
         usage
     fi
@@ -59,8 +59,8 @@ fi
 echo "Iniciando deploy do projeto '$projectName'..."
 echo "Repositório Git: $gitUrl"
 echo "SSL configurado: $ssl"
+echo "Domínio: $domain"
 if [ "$ssl" == "true" ]; then
-    echo "Domínio: $domain"
     echo "E-mail: $email"
 fi
 
@@ -70,7 +70,7 @@ sudo apt update && sudo apt upgrade -y
 
 # Instala dependências necessárias
 echo "Instalando Node.js, npm, Git e Nginx..."
-curl -fsSL https://deb.nodesource.com/setup_21.x | sudo -E bash -
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
 sudo apt install -y nodejs git nginx vite
 
 # Clona o repositório e instala dependências do projeto
