@@ -70,7 +70,7 @@ sudo apt update && sudo apt upgrade -y
 
 # Instala dependências necessárias
 echo "Instalando Node.js, npm, Git e Nginx..."
-curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
 sudo apt install -y nodejs git nginx vite
 
 # Clona o repositório e instala dependências do projeto
