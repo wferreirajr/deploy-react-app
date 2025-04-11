@@ -70,8 +70,8 @@ sudo apt update && sudo apt upgrade -y
 
 # Instala dependências necessárias
 echo "Instalando Node.js, npm, Git e Nginx..."
-curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-sudo apt install -y nodejs git nginx
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt install -y nodejs git nginx vite
 
 # Clona o repositório e instala dependências do projeto
 echo "Clonando repositório Git..."
@@ -91,7 +91,7 @@ sudo bash -c "cat > $nginx_config_path" <<EOL
 server {
     listen 80;
     server_name $domain;
-    root /var/www/$projectName/build;
+    root /var/www/$projectName/dist;
     index index.html;
 
     location / {
